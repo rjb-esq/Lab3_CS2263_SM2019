@@ -41,6 +41,7 @@ int main(void)
     }
 
     // write out the sentence in reverse order
+    
     while(Stack != NULL)
     {
         char *str = NULL;
@@ -83,25 +84,11 @@ Node_t *newNode(const char *value, Node_t *next)
  */
 Node_t *deleteNode(Node_t *current, char **value)
 {
-    Node_t * p = current;
-    if (p == NULL) {
-        return p;
-    }
-    if ((p -> value) == *value){
-        p = p -> next;
-        free(current);
-        return p;
-    }
-    Node_t * q = p -> next;
-    while ((q != NULL) &&((q -> value) != *value)) {
-        p = p -> next;
-        q = q -> next;
-    }
-    if (q != NULL) {
-        p->next = q->next;
-        free(q);
-    }
-    return p;
+    Node_t * next_node = NULL;
+    next_node = current->next;
+    *value = current->value;
+    free(current);
+    return next_node;
 }
 
 /**
@@ -112,12 +99,13 @@ Node_t *deleteNode(Node_t *current, char **value)
  */
 bool pop(Node_t **Stack, char **value)
 {
-    Node_t *cur_node = Stack;
+    Node_t *newest_node = NULL;
     bool success = false;
-    if(cur_node -> next == NULL) {
-        deleteNode(cur_node, value);
-        success = true;
-    } else pop(&cur_node, value);   
+    newest_node = (*Stack)->next;
+    *value = (*Stack)->value;
+    free(*Stack);
+    *Stack = newest_node;
+    success = true;
     return success;
 }
 
@@ -128,13 +116,9 @@ bool pop(Node_t **Stack, char **value)
  */
 bool push(Node_t **Stack, const char *value)
 {
-    Node_t *cur_node = Stack;
     bool success = false;
-    if(cur_node -> next == NULL) {
-        newNode(value, *Stack);
-        success = true;
-    } else {
-        push(&cur_node, value);   
-    }
+    Node_t* newest_node = newNode(value, *Stack);
+    *Stack = newest_node;
+    success = true;
     return success;
 }

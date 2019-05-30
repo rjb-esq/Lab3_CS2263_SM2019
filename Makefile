@@ -25,8 +25,8 @@ Stack.o: Stack.c
 
 test: test1 test2 test3
 
-test1: Stack Data/test1.input/tes1.expected
-	./Stack < Data/test1.input > test.1 result
+test1: Stack Data/test1.input Data/test1.expected
+	./Stack < Data/test1.input > test1.result
 	./TestPassed.sh test1.result Data/test1.expected
 
 test2: Stack Data/test2.input Data/test2.expected
