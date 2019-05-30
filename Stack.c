@@ -72,6 +72,7 @@ Node_t *newNode(const char *value, Node_t *next)
     fresh_node -> value = copy; 
     fresh_node -> next = next;
     if (fresh_node == NULL) {
+        printf("Fresh Node not created");
         return NULL;
     } else return fresh_node;
 }
