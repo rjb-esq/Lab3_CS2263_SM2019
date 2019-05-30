@@ -13,7 +13,7 @@ C_FLAGS = -Wall -Wextra
 help:
 	@printf "available command:\n"
 	@printf "	make help               (this command)\n"
-	@printf "	make ArraySort          (to build your C program)\n"
+	@printf "	make Stack              (to build your C program)\n"
 	@printf "	make test               (to run every test case)\n"
 
 Stack: Stack.o
@@ -29,10 +29,10 @@ test1: Stack Data/test1.input/tes1.expected
 	./Stack < Data/test1.input > test.1 result
 	./TestPassed.sh test1.result Data/test1.expected
 
-test2: ArraySort Data/test2.input Data/test2.expected
-	./ArraySort < Data/test2.input > test2.result
+test2: Stack Data/test2.input Data/test2.expected
+	./Stack < Data/test2.input > test2.result
 	./TestPassed.sh test2.result Data/test2.expected
 
-test3: ArraySort Data/test3.input Data/test3.expected
-	./ArraySort < Data/test3.input > test3.result
+test3: Stack Data/test3.input Data/test3.expected
+	./Stack < Data/test3.input > test3.result
 	./TestPassed.sh test3.result Data/test3.expected
