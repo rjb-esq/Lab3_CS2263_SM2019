@@ -72,7 +72,6 @@ Node_t *newNode(const char *value, Node_t *next)
     fresh_node -> value = copy; 
     fresh_node -> next = next;
     if (fresh_node == NULL) {
-        printf("Fresh Node not created");
         return NULL;
     } else return fresh_node;
 }
@@ -113,7 +112,7 @@ Node_t *deleteNode(Node_t *current, char **value)
  */
 bool pop(Node_t **Stack, char **value)
 {
-    Node_t *cur_node = *Stack;
+    Node_t *cur_node = Stack;
     bool success = false;
     if(cur_node -> next == NULL) {
         deleteNode(cur_node, value);
@@ -129,11 +128,13 @@ bool pop(Node_t **Stack, char **value)
  */
 bool push(Node_t **Stack, const char *value)
 {
-    Node_t *cur_node = *Stack;
+    Node_t *cur_node = Stack;
     bool success = false;
     if(cur_node -> next == NULL) {
         newNode(value, *Stack);
         success = true;
-    } else push(&cur_node, value);   
+    } else {
+        push(&cur_node, value);   
+    }
     return success;
 }
